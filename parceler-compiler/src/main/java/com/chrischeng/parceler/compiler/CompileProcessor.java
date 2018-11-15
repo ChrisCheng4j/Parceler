@@ -1,8 +1,8 @@
 package com.chrischeng.parceler.compiler;
 
 import com.chrischeng.parceler.annotation.ParcelerArg;
-import com.chrischeng.parceler.compiler.generator.ParcelArgCodeGenerator;
-import com.chrischeng.parceler.compiler.parser.ParcelArgElementParser;
+import com.chrischeng.parceler.compiler.generator.ArgGenerator;
+import com.chrischeng.parceler.compiler.parser.ArgElementParser;
 import com.chrischeng.parceler.compiler.util.CompileTools;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class CompileProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnv) {
         try {
-            ParcelArgCodeGenerator.generate(ParcelArgElementParser.parse(roundEnv));
+            ArgGenerator.generate(ArgElementParser.parse(roundEnv));
         } catch (IOException e) {
             //
         }

@@ -1,1 +1,1 @@
-include ':sample', ':parceler-annotation', ':parceler-compiler', ':parceler-api'
+include ':sample', ':parceler-annotation', ':parceler-compiler', ':parceler'

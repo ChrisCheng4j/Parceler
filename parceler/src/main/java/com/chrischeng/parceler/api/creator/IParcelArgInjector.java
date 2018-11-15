@@ -1,4 +1,4 @@
-package com.chrischeng.parceler.api;
+package com.chrischeng.parceler.api.creator;
 
 import android.os.Bundle;
 

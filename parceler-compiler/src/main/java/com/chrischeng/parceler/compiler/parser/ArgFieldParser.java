@@ -1,7 +1,7 @@
 package com.chrischeng.parceler.compiler.parser;
 
 import com.chrischeng.parceler.annotation.ParcelerArg;
-import com.chrischeng.parceler.compiler.model.ParcelArgFieldInfo;
+import com.chrischeng.parceler.compiler.model.ArgFieldInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +11,10 @@ import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
 
-class ParcelArgFieldParser {
+class ArgFieldParser {
 
-    static List<ParcelArgFieldInfo> parse(TypeElement typeElement) {
-        List<ParcelArgFieldInfo> fieldInfos = new ArrayList<>();
+    static List<ArgFieldInfo> parse(TypeElement typeElement) {
+        List<ArgFieldInfo> fieldInfos = new ArrayList<>();
 
         List<VariableElement> elements = getVariableElements(typeElement);
         for (VariableElement element : elements)
@@ -35,8 +35,8 @@ class ParcelArgFieldParser {
         return variableElements;
     }
 
-    private static ParcelArgFieldInfo getFieldInfo(VariableElement element) {
+    private static ArgFieldInfo getFieldInfo(VariableElement element) {
         ParcelerArg arg = element.getAnnotation(ParcelerArg.class);
-        return new ParcelArgFieldInfo(element.asType(), element.getSimpleName().toString(), arg.value());
+        return new ArgFieldInfo(element.asType(), element.getSimpleName().toString(), arg.value());
     }
 }
