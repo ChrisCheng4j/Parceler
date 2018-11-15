@@ -16,19 +16,19 @@ class ArgFieldParser {
     static List<ArgFieldInfo> parse(TypeElement typeElement) {
         List<ArgFieldInfo> fieldInfos = new ArrayList<>();
 
-        List<VariableElement> elements = getVariableElements(typeElement);
+        List<VariableElement> elements = getArgVariableElements(typeElement);
         for (VariableElement element : elements)
             fieldInfos.add(getFieldInfo(element));
 
         return fieldInfos;
     }
 
-    private static List<VariableElement> getVariableElements(TypeElement typeElement) {
+    private static List<VariableElement> getArgVariableElements(TypeElement typeElement) {
         List<VariableElement> variableElements = new ArrayList<>();
 
         List<? extends Element> enclosedElements = typeElement.getEnclosedElements();
         for (Element element : enclosedElements) {
-            if (element.getKind() == ElementKind.FIELD)
+            if (element.getKind() == ElementKind.FIELD && element.getAnnotation(ParcelerArg.class) != null)
                 variableElements.add((VariableElement) element);
         }
 
