@@ -11,6 +11,7 @@ import com.chrischeng.parceler.api.converter.ParcelJsonConverter;
 import com.chrischeng.parceler.demo.model.User;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,12 +23,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ArgActivity.class);
+
                 Calendar calendar = Calendar.getInstance();
-                intent.putExtra("year", String.valueOf(calendar.get(Calendar.YEAR)));
-                intent.putExtra("m", calendar.get(Calendar.MONTH));
-                intent.putExtra("user1", new User("Chris", 26));
-                intent.putExtra("user2", ParcelJsonConverter.toJson(new User("Cheng", 27)));
-                intent.putExtra("uri", ParcelJsonConverter.toJson(Uri.parse("router://path")));
+                String date = String.format(Locale.getDefault(), "%1d.%2d.%3d",
+                        calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DATE));
+
+                intent.putExtra(ArgActivity.KEY_DATE, date);
+                intent.putExtra(ArgActivity.KEY_USER1, new User("Chris", 26));
+                intent.putExtra(ArgActivity.KEY_USER2, ParcelJsonConverter.toJson(new User("Cheng", 27)));
+                intent.putExtra(ArgActivity.KEY_URI, ParcelJsonConverter.toJson(Uri.parse("router://path")));
+
                 startActivity(intent);
             }
         });
