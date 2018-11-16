@@ -1,7 +1,7 @@
 package com.chrischeng.parceler.api.helper;
 
 import com.chrischeng.parceler.api.ParcelConstants;
-import com.chrischeng.parceler.api.converter.ParcelGsonConverter;
+import com.chrischeng.parceler.api.converter.ParcelJsonConverter;
 import com.chrischeng.parceler.api.creator.IParcelArgInjector;
 
 public class ParcelHelper {
@@ -35,6 +35,6 @@ public class ParcelHelper {
     }
 
     public static Object convert(Object obj, Class cls) {
-        return cls.isInstance(obj) ? obj : ParcelGsonConverter.convert(obj, cls);
+        return cls.isInstance(obj) ? obj : ParcelJsonConverter.fromJson(obj, cls);
     }
 }

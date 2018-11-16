@@ -1,5 +1,6 @@
 package com.chrischeng.parceler.demo;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,8 @@ public class ArgActivity extends AppCompatActivity {
     User user1;
     @ParcelerArg
     User user2;
+    @ParcelerArg
+    Uri uri;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,5 +33,6 @@ public class ArgActivity extends AppCompatActivity {
         Log.d("aaa", "age1:" + user1.age);
         Log.d("aaa", "name2:" + user2.name);
         Log.d("aaa", "age2:" + user2.age);
+        Log.d("aaa", "uri:" + uri.toString());
     }
 }
