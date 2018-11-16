@@ -1,6 +1,7 @@
 package com.chrischeng.parceler.compiler.parser;
 
 import com.chrischeng.parceler.annotation.ParcelerArg;
+import com.chrischeng.parceler.compiler.exception.ParcelerAnnotationModifierException;
 import com.chrischeng.parceler.compiler.exception.ParcelerAnnotationTargetException;
 import com.chrischeng.parceler.compiler.model.ArgFieldInfo;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 
 public class ArgElementParser {
@@ -27,6 +29,9 @@ public class ArgElementParser {
         for (Element element : elements) {
             if (element.getKind() != ElementKind.FIELD)
                 throw new ParcelerAnnotationTargetException(element.getSimpleName(), ParcelerArg.class, ElementKind.FIELD);
+
+            if (element.getModifiers().contains(Modifier.PRIVATE))
+                throw new ParcelerAnnotationModifierException(element.getSimpleName(), ParcelerArg.class, Modifier.PRIVATE.toString());
 
             typeElement = (TypeElement) element.getEnclosingElement();
 

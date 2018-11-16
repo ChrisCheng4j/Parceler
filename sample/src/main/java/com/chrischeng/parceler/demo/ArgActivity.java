@@ -13,7 +13,7 @@ import com.chrischeng.parceler.demo.model.User;
 public class ArgActivity extends AppCompatActivity {
 
     @ParcelerArg
-    String year;
+    private String year;
     @ParcelerArg("m")
     int month;
     @ParcelerArg
